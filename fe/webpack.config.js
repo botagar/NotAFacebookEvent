@@ -1,6 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const WorkboxWebpackPlugin = require("workbox-webpack-plugin");
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 const isProduction = process.env.NODE_ENV == "production";
 const DIST = path.resolve(__dirname, 'dist')
@@ -41,6 +42,7 @@ const config = {
   },
   resolve: {
     extensions: [".tsx", ".ts", ".jsx", ".js", "..."],
+    plugins: [new TsconfigPathsPlugin({})],
   },
 };
 

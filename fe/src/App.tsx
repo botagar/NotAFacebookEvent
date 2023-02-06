@@ -3,8 +3,8 @@ import { ErrorBoundary } from "react-error-boundary";
 import { QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 
-import { queryClient } from "./lib/react-query";
-import { NormaliseStyles } from "./utils/normaliseStyles";
+import { queryClient } from "@/lib/react-query";
+import { NormaliseStyles } from "@/utils/normaliseStyles";
 
 const ErrorFallback = () => {
     return (
