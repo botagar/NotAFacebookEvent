@@ -1,5 +1,28 @@
 import React from "react";
+import { ErrorBoundary } from "react-error-boundary";
+import { QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
 
-type AppProps = { num: number };
+import { queryClient } from "./lib/react-query";
+import { NormaliseStyles } from "./utils/normaliseStyles";
 
-export const App = ({num}: AppProps) => <h1>Total Number: {num}</h1>;
+const ErrorFallback = () => {
+    return (
+      <div>
+        <h2>Ooops, something went wrong :( </h2>
+      </div>
+    );
+  };
+
+export const App = () => (
+    <React.Suspense fallback={<h1>Loading...</h1>}>
+        <ErrorBoundary FallbackComponent={ErrorFallback}>
+            <QueryClientProvider client={queryClient}>
+            {process.env.NODE_ENV !== 'test' && <ReactQueryDevtools initialIsOpen={false} position="bottom-right"/>}
+                <NormaliseStyles>
+                    <p>Hello World</p>
+                </NormaliseStyles>
+            </QueryClientProvider>
+        </ErrorBoundary>
+    </React.Suspense>
+);
