@@ -1,6 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const WorkboxWebpackPlugin = require("workbox-webpack-plugin");
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 const isProduction = process.env.NODE_ENV == "production";
@@ -13,15 +14,19 @@ const config = {
     publicPath: 'auto',
     filename: '[name].bundle.[fullhash:8].js',
     chunkFilename: '[name].bundle.[contenthash:8].js',
+    sourceMapFilename: '[file].map',
   },
   devServer: {
     open: true,
+    hot: true,
     host: "localhost",
+    port: 8080,
     static: [
       DIST
     ],
   },
   plugins: [
+    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, './src/index.html'),
       filename: "index.html",

@@ -20,7 +20,7 @@ export const App = () => (
             <QueryClientProvider client={queryClient}>
             {process.env.NODE_ENV !== 'test' && <ReactQueryDevtools initialIsOpen={false} position="bottom-right"/>}
                 <NormaliseStyles>
-                    <p>Hello World</p>
+                    <p>Hello Worlds</p>
                 </NormaliseStyles>
             </QueryClientProvider>
         </ErrorBoundary>
