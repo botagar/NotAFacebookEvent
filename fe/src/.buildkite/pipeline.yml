@@ -1,0 +1,9 @@
+agents:
+  queue: default
+
+steps:
+  - label: "Example Test"
+    command: echo "Hello!"
+
+  - label: Build production artifact
+    command: ENV=prod yarn build
